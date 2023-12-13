@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "jsx": "react-native",
+    "baseUrl": "./",                          /* Base directory to resolve non-absolute module names. */
+      "paths": {                                /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+        "@assets/*": ["src/assets/*"],
+        "@components/*": ["src/components/*"],
+        "@constants/*": ["src/constants/*"],
+        "@navigation/*": ["src/navigation/*"],
+        "@hooks/*": ["src/hooks/*"],
+        "@routes/*": ["src/routes/*"],
+        "@services/*": ["src/services/*"],
+        "@styles/*": ["src/styles/*"],
+        "@utils/*": ["src/utils/*"],
+        "@store/*": ["src/store/*"],
+        "@api/*": ["src/api/*"],
+        "@types/*": ["src/types/*"],
+        "types/*": ["src/types/*"]
+      },
+      "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"
+  ],
+  "extends": "@tsconfig/react-native/tsconfig.json"
+}

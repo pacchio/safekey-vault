@@ -11,6 +11,7 @@ import { CustomHeader, CustomListItem } from '@components/molecules';
 import { PageContainer } from '@components/organisms';
 import { useAccounts } from '@hooks/useAccounts';
 import { navigate } from '@navigation/NavigationService';
+import { DrawerActions } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { showAlert } from '@services/AlertService';
 import { Colors } from '@styles/index';
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AccountsListScreen = ({}: NativeStackScreenProps<any>) => {
+const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
   const { accounts, setAccounts } = useAccounts();
   const [accountsList, setAccountsList] = useState<Account[]>([]);
   const [term, setTerm] = useState('');
@@ -39,6 +40,10 @@ const AccountsListScreen = ({}: NativeStackScreenProps<any>) => {
   useEffect(() => {
     setAccountsList(accounts);
   }, [accounts]);
+
+  const openSettings = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  };
 
   const onChangeText = (text: string) => {
     setTerm(text);
@@ -111,7 +116,7 @@ const AccountsListScreen = ({}: NativeStackScreenProps<any>) => {
   return (
     <PageContainer
       noMargin
-      customHeader={<CustomHeader title={'Home'} backButton={false} confirmIcon={'settings'} confirm={() => {}} />}
+      customHeader={<CustomHeader title={'Home'} backButton={false} confirmIcon={'settings'} confirm={openSettings} />}
       absoluteElementBottom={<AddItemButton />}>
       <CustomRow>
         <CustomInput value={term} onChangeText={onChangeText} icon={'search'} placeholder={'Cerca...'} />

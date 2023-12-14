@@ -5,4 +5,5 @@ export * from './CustomBackButton';
 export * from './CustomHeader';
 export * from './CustomHelp';
 export * from './CustomListItem';
+export * from './CustomMenuItem';
 export * from './CustomLoader';

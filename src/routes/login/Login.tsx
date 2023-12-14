@@ -40,7 +40,7 @@ const LoginScreen = ({}: NativeStackScreenProps<any>) => {
 
   const login = () => {
     dispatch(user.actions.setInLoggedIn(true));
-    showToastMessage(AppMessageType.SUCCESS, 'Logic effettuato con successo!');
+    showToastMessage(AppMessageType.SUCCESS, 'Login effettuato con successo!');
   };
 
   useEffect(() => {

@@ -1,6 +1,6 @@
-import { getActiveRouteName, isNavigationReady, navigationRef } from "@navigation/NavigationService";
-import { LoginStackNavigation } from '@navigation/stacks';
-import { HomeStackNavigation } from '@navigation/stacks/HomeStackNavigation';
+import { getActiveRouteName, navigationRef } from '@navigation/NavigationService';
+import { LoginStackNavigation } from '@navigation/stacks/LoginStackNavigation';
+import { HomeDrawerNavigation } from '@navigation/stacks/HomeDrawerNavigation';
 import { IntroStackNavigation } from '@navigation/stacks/IntroStackNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -54,7 +54,7 @@ export const Navigator = ({ initCompleted }: Props) => {
       ) : !isLoggedIn ? (
         <LoginStackNavigation />
       ) : (
-        <HomeStackNavigation />
+        <HomeDrawerNavigation />
       )}
     </NavigationContainer>
   );

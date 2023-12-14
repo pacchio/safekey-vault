@@ -163,4 +163,4 @@ type Props = {
   disabled?: boolean;
 };
 
-export default CustomLabelText;
+export { CustomLabelText };

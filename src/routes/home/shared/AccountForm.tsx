@@ -1,5 +1,4 @@
-import { CustomInput } from '@components/atoms';
-import CustomLabelText from '@components/atoms/CustomLabelText';
+import { CustomInput, CustomLabelText } from '@components/atoms';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { AppMessageType, showToastMessage } from '@services/ToastService';
 import React, { useEffect, useState } from 'react';

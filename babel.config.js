@@ -23,6 +23,12 @@ module.exports = {
       },
     ],
     '@babel/plugin-proposal-export-namespace-from',
-    'react-native-reanimated/plugin',
+    [
+      'react-native-reanimated/plugin',
+      {
+        globals: ['__scanCodes'],
+      },
+    ],
+    ['react-native-worklets-core/plugin'],
   ],
 };

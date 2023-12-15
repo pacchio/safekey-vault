@@ -53,6 +53,8 @@
 	<false/>
   <key>NSFaceIDUsageDescription</key>
   <string>Authentication with TouchId or FaceID</string>
+  <key>NSCameraUsageDescription</key>
+  <string>$(PRODUCT_NAME) needs access to your Camera.</string>
   <key>UIAppFonts</key>
   <array>
     <string>AntDesign.ttf</string>

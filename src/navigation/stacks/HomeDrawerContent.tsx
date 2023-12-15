@@ -1,10 +1,11 @@
 import { CustomRow, CustomText, CustomView, CustomViewBottom } from '@components/atoms';
 import { AppInfoSection, CustomListItem } from '@components/molecules';
 import CustomMenuItem from '@components/molecules/CustomMenuItem';
+import { navigate } from '@navigation/NavigationService';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { DrawerContentComponentProps } from '@react-navigation/drawer/src/types';
+import { ROUTE_NAMES } from '@routes/home';
 import { Colors, Spacing } from '@styles/index';
-import { FONT_SIZE_PAGE_HEADER } from '@styles/typography';
 import { commonStyles } from '@utils/commonStyles';
 import { ToggleDarkMode, useTheme } from '@utils/themeProvider';
 import React from 'react';
@@ -12,7 +13,6 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 const HomeDrawerContentComponent = (props: DrawerContentComponentProps) => {
-  const { navigation } = props;
   const { colors, isDark } = useTheme();
 
   const mContainerStyle = {
@@ -22,9 +22,13 @@ const HomeDrawerContentComponent = (props: DrawerContentComponentProps) => {
 
   const dispatch = useDispatch();
 
-  const importAccounts = () => {};
+  const importAccounts = () => {
+    navigate(ROUTE_NAMES.ACCOUNT_IMPORT);
+  };
 
-  const exportAccounts = () => {};
+  const exportAccounts = () => {
+    navigate(ROUTE_NAMES.ACCOUNT_EXPORT);
+  };
 
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={mContainerStyle}>

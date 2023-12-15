@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-SafeKeyVault-SafeKeyVaultTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SafeKeyVault-SafeKeyVaultTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8E223D612B2C744B005875D7 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E223D602B2C744B005875D7 /* Bridge.swift */; };
+		8E223D622B2C744B005875D7 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E223D602B2C744B005875D7 /* Bridge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		8E223D452B28C45C005875D7 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		8E223D462B28C45C005875D7 /* FontAwesome6_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Brands.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Brands.ttf"; sourceTree = "<group>"; };
 		8E223D472B28C45C005875D7 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		8E223D5E2B2C744A005875D7 /* SafeKeyVault-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeKeyVault-Bridging-Header.h"; sourceTree = "<group>"; };
+		8E223D5F2B2C744A005875D7 /* SafeKeyVaultTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SafeKeyVaultTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		8E223D602B2C744B005875D7 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -135,6 +140,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8E223D602B2C744B005875D7 /* Bridge.swift */,
 				8E223D342B28C3E1005875D7 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* SafeKeyVault */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -142,6 +148,8 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				8E223D5E2B2C744A005875D7 /* SafeKeyVault-Bridging-Header.h */,
+				8E223D5F2B2C744A005875D7 /* SafeKeyVaultTests-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -250,10 +258,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 1500;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -450,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E223D622B2C744B005875D7 /* Bridge.swift in Sources */,
 				00E356F31AD99517003FC87E /* SafeKeyVaultTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +470,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				8E223D612B2C744B005875D7 /* Bridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +489,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-SafeKeyVault-SafeKeyVaultTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -497,6 +510,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVaultTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeKeyVault.app/SafeKeyVault";
 			};
 			name = Debug;
@@ -505,7 +521,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-SafeKeyVault-SafeKeyVaultTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = SafeKeyVaultTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -521,6 +539,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVaultTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SafeKeyVault.app/SafeKeyVault";
 			};
 			name = Release;
@@ -547,6 +567,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
 				PRODUCT_NAME = SafeKeyVault;
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVault-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -574,6 +595,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
 				PRODUCT_NAME = SafeKeyVault;
+				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVault-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -1,3 +1,4 @@
+import 'react-native-reanimated';
 import { toastConfig } from '@components/atoms/CustomToast';
 import { useInitialConfig } from '@hooks/useInitialConfig';
 import { Navigator } from '@navigation/index';

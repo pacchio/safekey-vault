@@ -40,7 +40,6 @@ const LoginScreen = ({}: NativeStackScreenProps<any>) => {
 
   const login = () => {
     dispatch(user.actions.setInLoggedIn(true));
-    showToastMessage(AppMessageType.SUCCESS, 'Login effettuato con successo!');
   };
 
   useEffect(() => {
@@ -58,9 +57,7 @@ const LoginScreen = ({}: NativeStackScreenProps<any>) => {
   return (
     <PageContainer>
       <CustomRow center marginTop marginBottom={20}>
-        <CustomText bold size={FONT_SIZE_BIG}>
-          Inserisci il codice per accedere
-        </CustomText>
+        <CustomText size={FONT_SIZE_BIG}>Inserisci il codice per accedere</CustomText>
       </CustomRow>
       <CustomView marginTop={20}>
         <CustomRow center>

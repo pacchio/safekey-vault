@@ -29,9 +29,7 @@ const BaseToast = (props: any) => {
         <View>
           {text1 ? (
             <View>
-              <CustomText bold style={styles.text1}>
-                {text1}
-              </CustomText>
+              <CustomText style={styles.text1}>{text1}</CustomText>
             </View>
           ) : (
             <></>

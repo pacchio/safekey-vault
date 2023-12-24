@@ -44,9 +44,7 @@ const PasscodeSetUpConfirmScreen = ({}: NativeStackScreenProps<any>) => {
     <>
       <PageContainer>
         <CustomRow center>
-          <CustomText bold size={FONT_SIZE_BIG}>
-            Setup del codice di accesso
-          </CustomText>
+          <CustomText size={FONT_SIZE_BIG}>Setup del codice di accesso</CustomText>
         </CustomRow>
         <CustomRow center marginTop marginBottom={20}>
           <CustomText>Digita di nuovo il codice per confermare</CustomText>

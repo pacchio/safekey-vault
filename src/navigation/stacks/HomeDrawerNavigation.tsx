@@ -26,11 +26,7 @@ const HomeDrawerNavigation = () => {
         headerShown: false,
       }}
       drawerContent={(drawerProps) => <HomeDrawerContentComponent {...drawerProps} />}>
-      <Drawer.Screen
-        name="HomeMainPage"
-        component={HomeStackNavigation}
-        options={{ swipeEnabled: page === ROUTE_NAMES.ACCOUNTS_LIST }}
-      />
+      <Drawer.Screen name="HomeMainPage" component={HomeStackNavigation} options={{ swipeEnabled: false }} />
     </Drawer.Navigator>
   );
 };

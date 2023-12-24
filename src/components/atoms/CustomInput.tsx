@@ -1,4 +1,5 @@
 import { CustomIcon } from '@components/atoms';
+import { ColorType } from '@styles/colors';
 import { Colors, Spacing, Typography } from '@styles/index';
 import { ICON_SIZE_SMALL } from '@styles/spacing';
 import { useTheme } from '@utils/themeProvider';
@@ -100,6 +101,12 @@ const CustomInput = React.forwardRef(
       onSubmitEditing && onSubmitEditing(e);
     };
 
+    const RightIcon = ({ icon, color, onPress }: { icon: string; color?: ColorType; onPress?: () => void }) => (
+      <TouchableOpacity style={iconContainerRightStyle} onPress={onPress}>
+        <CustomIcon icon={icon} size={ICON_SIZE_SMALL} color={color ?? Colors.GRAY_DARK} />
+      </TouchableOpacity>
+    );
+
     return (
       <TouchableOpacity style={[inputContainerStyle, style]} onPress={onContainerPress}>
         <View style={[inputContainerStyle]}>
@@ -131,7 +138,7 @@ const CustomInput = React.forwardRef(
             secureTextEntry={isPassword || false}
             style={[mInputStyle, inputStyle]}
             placeholder={placeholder}
-            placeholderTextColor={colors.text}
+            placeholderTextColor={Colors.GRAY_DARK}
             underlineColorAndroid="transparent"
             onChangeText={_onChangeText}
             onSubmitEditing={_onSubmitEditing}
@@ -141,11 +148,19 @@ const CustomInput = React.forwardRef(
             maxLength={maxLength}
           />
           {(icon || iconFontawesome) && !rightIcon && <View style={iconContainerRightStyle} />}
-          {rightIcon && (
-            <TouchableOpacity style={iconContainerRightStyle} onPress={rightIconOnPress}>
-              <CustomIcon icon={rightIcon} size={ICON_SIZE_SMALL} color={rightIconColor ?? Colors.GRAY_DARK} />
-            </TouchableOpacity>
-          )}
+          {rightIcon &&
+            (Array.isArray(rightIcon) ? (
+              rightIcon.map((icon, index) => (
+                <RightIcon
+                  key={index}
+                  icon={icon}
+                  color={Array.isArray(rightIconColor) ? rightIconColor[index] : rightIconColor}
+                  onPress={Array.isArray(rightIconOnPress) ? rightIconOnPress[index] : rightIconOnPress}
+                />
+              ))
+            ) : (
+              <RightIcon icon={rightIcon} color={rightIconColor as string} onPress={rightIconOnPress} />
+            ))}
         </View>
       </TouchableOpacity>
     );
@@ -223,10 +238,10 @@ type Props = {
     | undefined;
   icon?: string;
   iconFontawesome?: string;
-  iconColor?: 'primary' | 'secondary' | 'accent' | 'white' | 'black' | 'gray' | string;
-  rightIcon?: string;
-  rightIconOnPress?: any;
-  rightIconColor?: 'primary' | 'secondary' | 'accent' | 'white' | 'black' | 'gray' | string;
+  iconColor?: ColorType;
+  rightIcon?: string | string[];
+  rightIconOnPress?: () => void | (() => void)[];
+  rightIconColor?: ColorType | ColorType[];
   maxLength?: number;
 };
 

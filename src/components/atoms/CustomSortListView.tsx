@@ -1,6 +1,6 @@
 import { CustomSwipableRowItem } from '@components/atoms';
 import { Colors } from '@styles/index';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Platform, StyleSheet, UIManager, View } from 'react-native';
 import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 
@@ -59,6 +59,8 @@ const CustomSortListView = React.forwardRef(
         <DraggableFlatList
           activationDistance={15}
           keyExtractor={(item: any) => item.key}
+          removeClippedSubviews
+          initialNumToRender={20}
           data={listData}
           renderItem={_renderItem}
           onDragEnd={onDragEnd}

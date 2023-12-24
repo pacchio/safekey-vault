@@ -47,6 +47,7 @@ const CustomText = ({
   const textDecorationLine = underline ? 'underline' : lineThrough ? 'line-through' : 'none';
   const textAlign = center ? 'center' : right ? 'right' : 'left';
   const textTransform = uppercase ? 'uppercase' : 'none';
+  const fontWeight = bold ? 'bold' : 'normal';
 
   const textStyle = {
     ...mStyles.baseStyle,
@@ -56,6 +57,7 @@ const CustomText = ({
     fontFamily,
     textDecorationLine,
     textTransform,
+    fontWeight,
   };
 
   const renderTextOrPrice = () => {

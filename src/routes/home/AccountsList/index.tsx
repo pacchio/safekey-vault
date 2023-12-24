@@ -18,7 +18,7 @@ import { Colors } from '@styles/index';
 import { commonStyles } from '@utils/commonStyles';
 import * as _ from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Keyboard, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Account } from 'types/account';
 import { ROUTE_NAMES } from '../routes';
 
@@ -48,6 +48,11 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
   const onChangeText = (text: string) => {
     setTerm(text);
     searchUpdate(text);
+  };
+
+  const onCancelText = () => {
+    onChangeText('');
+    Keyboard.dismiss();
   };
 
   const searchUpdate = _.debounce((text: string) => {
@@ -92,14 +97,18 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
     );
   };
 
-  const renderSortableItem = (data: { item: Account; index: any; drag: any; isActive: any }, onPress: any) => {
+  const renderItem = (data: { item: Account; index: any; drag: any; isActive: any }) => {
     return (
-      <CustomListItem onLongPress={data.drag} onPress={onPress} arrow style={commonStyles.rowContainer}>
+      <CustomListItem
+        onLongPress={data.drag}
+        onPress={() => goToDetail(data.item.id)}
+        arrow
+        style={commonStyles.rowContainer}>
         <CustomView centerVertical>
           <CustomIcon icon={'reorder'} color={'gray'} />
         </CustomView>
         <CustomView centerVertical marginLeft style={{ flex: 8 }}>
-          <CustomText color={'primary'} bold>{`${data.item.title}`}</CustomText>
+          <CustomText color={'primary'}>{`${data.item.title}`}</CustomText>
         </CustomView>
       </CustomListItem>
     );
@@ -116,21 +125,34 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
   return (
     <PageContainer
       noMargin
+      useScrollView={false}
+      useSafeArea={true}
       customHeader={<CustomHeader title={'Home'} backButton={false} confirmIcon={'settings'} confirm={openSettings} />}
       absoluteElementBottom={<AddItemButton />}>
       <CustomRow>
-        <CustomInput value={term} onChangeText={onChangeText} icon={'search'} placeholder={'Cerca...'} />
-      </CustomRow>
-      <CustomView marginTop>
-        <CustomSortListView
-          data={accountsList}
-          renderItem={(data: { item: Account; index: any; drag: any; isActive: any }) =>
-            renderSortableItem(data, () => goToDetail(data.item.id))
-          }
-          renderHiddenItemRight={renderHiddenItem}
-          numberOfHiddenItem={1}
-          onDragEnd={onDragEnd}
+        <CustomInput
+          value={term}
+          onChangeText={onChangeText}
+          icon={'search'}
+          placeholder={'Cerca...'}
+          rightIcon={term ? 'close' : ''}
+          rightIconOnPress={onCancelText}
         />
+      </CustomRow>
+      <CustomView style={{ flex: 1 }}>
+        {accountsList?.length ? (
+          <CustomSortListView
+            data={accountsList}
+            renderItem={renderItem}
+            renderHiddenItemRight={renderHiddenItem}
+            numberOfHiddenItem={1}
+            onDragEnd={onDragEnd}
+          />
+        ) : (
+          <CustomView marginHorizontal={20} centerHorizontal>
+            <CustomText>Nessun account presente</CustomText>
+          </CustomView>
+        )}
       </CustomView>
     </PageContainer>
   );

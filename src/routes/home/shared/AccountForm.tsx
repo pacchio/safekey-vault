@@ -11,6 +11,7 @@ const AccountForm = React.forwardRef(({ account }: Props, ref) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [notes, setNotes] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (account) {
@@ -51,6 +52,10 @@ const AccountForm = React.forwardRef(({ account }: Props, ref) => {
     } catch (e) {
       return;
     }
+  };
+
+  const show = () => {
+    setShowPassword(!showPassword);
   };
 
   const copy = (textToCopy: string) => {
@@ -104,14 +109,14 @@ const AccountForm = React.forwardRef(({ account }: Props, ref) => {
         label={'Password'}
         element={
           <CustomInput
-            isPassword
+            isPassword={!showPassword}
             autoCapitalize={'none'}
             value={password}
             onChangeText={(txt) => setPassword(txt)}
             placeholder={'Password'}
-            rightIcon={password ? 'content-copy' : undefined}
+            rightIcon={password ? [showPassword ? 'visibility-off' : 'visibility', 'content-copy'] : undefined}
             rightIconColor={'primary'}
-            rightIconOnPress={() => copy(password)}
+            rightIconOnPress={[show, () => copy(password)] as any}
           />
         }
       />

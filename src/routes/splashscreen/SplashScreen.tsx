@@ -1,4 +1,4 @@
-import splash_icon from '@assets/images/logo/splash_icon.png';
+import splash_icon from '@assets/images/logo/launch_screen.png';
 import { CustomRow } from '@components/atoms';
 import { Colors } from '@styles/index';
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@styles/mixins';
@@ -12,16 +12,6 @@ export const SplashScreenRoute = () => {
         <Image source={splash_icon} style={styles.image} />
       </CustomRow>
     </View>
-    // <View style={styles.container}>
-    //   <CustomRow style={styles.videoContainer}>
-    //     <Video
-    //       style={styles.video}
-    //       source={splash_video}
-    //       muted={true}
-    //       resizeMode={'contain'}
-    //     />
-    //   </CustomRow>
-    // </View>
   );
 };
 
@@ -49,8 +39,6 @@ export const styles = StyleSheet.create({
   video: {
     flex: 1,
     width: WINDOW_WIDTH,
-    //height: WINDOW_HEIGHT,
-    // width: 200,
     height: 150,
   },
 });

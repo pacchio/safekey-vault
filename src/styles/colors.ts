@@ -1,7 +1,7 @@
-export const PRIMARY = '#9C1F1E';
-export const PRIMARY_TRASPARENT = '#9C1F1E30';
-export const SECONDARY = '#101084';
-export const ACCENT = '#97be42';
+export const PRIMARY = '#263032';
+export const PRIMARY_TRASPARENT = '#26303230';
+export const SECONDARY = '#5CE0E6';
+export const ACCENT = '#AD3ECD';
 
 export const FACEBOOK = '#3b5998';
 export const INSTAGRAM = '#DD2A7B';
@@ -46,3 +46,5 @@ export const darkColors = {
   primary: PRIMARY,
   text: WHITE,
 };
+
+export type ColorType = 'primary' | 'secondary' | 'accent' | 'white' | 'black' | 'gray' | string;

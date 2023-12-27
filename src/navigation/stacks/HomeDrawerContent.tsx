@@ -10,7 +10,6 @@ import { commonStyles } from '@utils/commonStyles';
 import { ToggleDarkMode, useTheme } from '@utils/themeProvider';
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { useDispatch } from 'react-redux';
 
 const HomeDrawerContentComponent = (props: DrawerContentComponentProps) => {
   const { colors, isDark } = useTheme();
@@ -20,14 +19,12 @@ const HomeDrawerContentComponent = (props: DrawerContentComponentProps) => {
     backgroundColor: colors.backgroundPage,
   };
 
-  const dispatch = useDispatch();
-
   const importAccounts = () => {
-    navigate(ROUTE_NAMES.ACCOUNT_IMPORT);
+    navigate(ROUTE_NAMES.ACCOUNT_IMPORT_SELECT_METHOD);
   };
 
   const exportAccounts = () => {
-    navigate(ROUTE_NAMES.ACCOUNT_EXPORT);
+    navigate(ROUTE_NAMES.ACCOUNT_EXPORT_SELECT_METHOD);
   };
 
   return (

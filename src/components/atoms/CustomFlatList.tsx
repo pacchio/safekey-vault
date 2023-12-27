@@ -1,7 +1,7 @@
 import { Colors } from '@styles/index';
 import { useTheme } from '@utils/themeProvider';
 import React, { useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 
 const CustomFlatListView = ({ listData, renderItem, lastItem, loadMoreActions, initialNumToRender, style }: Props) => {
   const [onEndReachedCalledDuringMomentum, setOnEndReachedCalledDuringMomentum] = useState(false);
@@ -57,7 +57,7 @@ const mStyles = StyleSheet.create({
 
 type Props = {
   listData: any;
-  renderItem: any;
+  renderItem: ListRenderItem<any>;
   style?: Object;
   lastItem?: boolean;
   loadMoreActions?: () => Promise<void>;

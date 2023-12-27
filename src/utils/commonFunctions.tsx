@@ -29,17 +29,8 @@ export const isValidUrl = (s: string) => {
 };
 
 export const openURL = (url: string, onFail?: () => void) => {
-  // Linking.canOpenURL(url)
-  //   .then((supported) => {
-  //     if (supported) {
-  //       Linking.openURL(url);
-  //     } else {
-  //       showToastMessage(AppMessageType.WARNING, "Impossibile aprire l'url");
-  //     }
-  //   })
-  //   .catch((e) => console.log(e));
-  Linking.openURL(url).catch((e) => {
-    console.log(e);
+  Linking.openURL(url).catch((err) => {
+    console.log(err);
     if (onFail) {
       onFail();
     } else {
@@ -95,4 +86,12 @@ export const toBase64 = (value: string) => {
 
 export const getNumberValue = (value: boolean | number | undefined): number | undefined => {
   return _.isNumber(value) ? value : undefined;
+};
+
+export const strToJson = (str: string): Object | undefined => {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    return;
+  }
 };

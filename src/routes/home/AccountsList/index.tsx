@@ -149,7 +149,7 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
             onDragEnd={onDragEnd}
           />
         ) : (
-          <CustomView marginHorizontal={20} centerHorizontal>
+          <CustomView marginHorizontal={20} centerHorizontal marginTop>
             <CustomText>Nessun account presente</CustomText>
           </CustomView>
         )}

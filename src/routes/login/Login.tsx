@@ -2,6 +2,8 @@ import { CustomButton, CustomRow, CustomView, CustomViewBottom } from '@componen
 import { CustomText } from '@components/atoms/CustomText';
 import { PasscodeInput } from '@components/molecules/PasscodeInput';
 import { PageContainer } from '@components/organisms';
+import { SETTINGS_KEYS } from '@constants/index';
+import { useAppSettings } from '@hooks/useAppSettings';
 import { useBiometrics } from '@hooks/useBiometrics';
 import { KEYS, useUserStorage } from '@hooks/useStorage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -12,10 +14,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const LoginScreen = ({}: NativeStackScreenProps<any>) => {
-  const [passcode, setPasscode, clearAll] = useUserStorage(KEYS.PASSCODE);
+  const [passcode, setPasscode, clearAllUserStorage] = useUserStorage(KEYS.PASSCODE);
+  const { settings, getSetting } = useAppSettings();
   const [passcodeValue, setPasscodeValue] = useState<string>();
   const { available, biometryType, simplePrompt } = useBiometrics();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (getSetting(SETTINGS_KEYS.FACE_ID_AUTO)) {
+      tryLoginWithBiometrics();
+    }
+  }, [settings]);
 
   const tryLoginWithBiometrics = async () => {
     try {
@@ -50,7 +59,7 @@ const LoginScreen = ({}: NativeStackScreenProps<any>) => {
 
   /* ========== DEBUG =========== */
   const clearAllData = () => {
-    clearAll();
+    clearAllUserStorage();
     showToastMessage(AppMessageType.SUCCESS, 'Dati eliminati con successo');
   };
 

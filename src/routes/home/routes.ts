@@ -4,6 +4,7 @@ import { QrCodeScreen, SelectAccountsForQrCodeScreen, SelectExportMethodScreen }
 import { AccountImportScreen, AccountImportScanQrScreen } from './AccountsImport';
 import { AccountsListScreen } from './AccountsList';
 import { AddAccountScreen } from './AddAccount';
+import { SettingsScreen } from './Settings';
 
 export const ROUTE_NAMES = {
   ACCOUNTS_LIST: 'home/AccountsList',
@@ -14,6 +15,7 @@ export const ROUTE_NAMES = {
   ACCOUNT_EXPORT_SELECT_METHOD: 'home/AccountExport/SelectMethod',
   ACCOUNT_EXPORT_SELECT_ACCOUNTS_FOR_QRCODE: 'home/AccountExport/SelectAccountsForQrCode',
   ACCOUNT_EXPORT_QR_CODE: 'home/AccountExport/QrCode',
+  SETTINGS: 'home/Settings',
 } as const;
 
 type RouteType = (typeof ROUTE_NAMES)[keyof typeof ROUTE_NAMES];
@@ -55,6 +57,14 @@ const routeMap: Record<RouteType, Route> = {
   [ROUTE_NAMES.ACCOUNT_EXPORT_QR_CODE]: {
     component: QrCodeScreen,
     name: ROUTE_NAMES.ACCOUNT_EXPORT_QR_CODE,
+  },
+  [ROUTE_NAMES.ACCOUNT_EXPORT_QR_CODE]: {
+    component: QrCodeScreen,
+    name: ROUTE_NAMES.ACCOUNT_EXPORT_QR_CODE,
+  },
+  [ROUTE_NAMES.SETTINGS]: {
+    component: SettingsScreen,
+    name: ROUTE_NAMES.SETTINGS,
   },
 };
 export type ParamsList = ItemDetailParamsList;

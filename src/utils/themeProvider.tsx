@@ -1,3 +1,5 @@
+import { SETTINGS_KEYS } from '@constants/index';
+import { useAppSettings } from '@hooks/useAppSettings';
 import { darkColors, lightColors } from '@styles/colors';
 import { Colors } from '@styles/index';
 import * as React from 'react';
@@ -11,24 +13,19 @@ export enum Theme {
 export const ThemeContext = React.createContext({
   isDark: false,
   colors: lightColors,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setScheme: (value: Theme) => {},
 });
 
 export const ThemeProvider = (props: any) => {
   const colorScheme = useColorScheme();
   const [isDark, setIsDark] = React.useState(colorScheme === Theme.DARK);
-  // const [isDark, setIsDark] = React.useState(false);
+  const { settings, getSetting } = useAppSettings();
 
   React.useEffect(() => {
-    // setIsDark(colorScheme === Theme.DARK);
-    const init = async () => {
-      const theme = Theme.LIGTH;
-      // @ts-ignore
-      setIsDark(theme === Theme.DARK);
-    };
-    init();
-  }, [colorScheme]);
+    const darkMode = getSetting(SETTINGS_KEYS.DARK_MODE);
+    const theme = darkMode ? Theme.DARK : Theme.LIGTH;
+    setIsDark(theme === Theme.DARK);
+  }, [colorScheme, settings]);
 
   const defaultTheme = {
     isDark,
@@ -47,7 +44,6 @@ export const ToggleDarkMode = ({ style }: { style?: any }) => {
   const toggleScheme = () => {
     const theme = isDark ? Theme.LIGTH : Theme.DARK;
     setScheme(theme);
-    // setAppTheme(theme);
   };
 
   return (

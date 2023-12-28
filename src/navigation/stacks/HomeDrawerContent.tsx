@@ -1,5 +1,5 @@
-import { CustomRow, CustomText, CustomView, CustomViewBottom } from '@components/atoms';
-import { AppInfoSection, CustomListItem } from '@components/molecules';
+import { CustomText, CustomView, CustomViewBottom } from '@components/atoms';
+import { AppInfoSection } from '@components/molecules';
 import CustomMenuItem from '@components/molecules/CustomMenuItem';
 import { navigate } from '@navigation/NavigationService';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
@@ -7,7 +7,7 @@ import { DrawerContentComponentProps } from '@react-navigation/drawer/src/types'
 import { ROUTE_NAMES } from '@routes/home';
 import { Colors, Spacing } from '@styles/index';
 import { commonStyles } from '@utils/commonStyles';
-import { ToggleDarkMode, useTheme } from '@utils/themeProvider';
+import { useTheme } from '@utils/themeProvider';
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
@@ -27,6 +27,10 @@ const HomeDrawerContentComponent = (props: DrawerContentComponentProps) => {
     navigate(ROUTE_NAMES.ACCOUNT_EXPORT_SELECT_METHOD);
   };
 
+  const settings = () => {
+    navigate(ROUTE_NAMES.SETTINGS);
+  };
+
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={mContainerStyle}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -35,12 +39,7 @@ const HomeDrawerContentComponent = (props: DrawerContentComponentProps) => {
         </CustomView>
         <CustomMenuItem icon={'file-download'} title={'Importa'} onPress={importAccounts} />
         <CustomMenuItem icon={'file-upload'} title={'Esporta'} onPress={exportAccounts} />
-        <CustomListItem style={commonStyles.menuItem}>
-          <CustomRow>
-            <ToggleDarkMode style={{ marginLeft: -Spacing.SCALE_12 }} />
-            <CustomText style={{ marginLeft: Spacing.SCALE_8 }}>Modalità scura</CustomText>
-          </CustomRow>
-        </CustomListItem>
+        <CustomMenuItem icon={'settings'} title={'Impostazioni'} onPress={settings} />
         <CustomViewBottom style={styles.bottomView}>
           <AppInfoSection />
         </CustomViewBottom>

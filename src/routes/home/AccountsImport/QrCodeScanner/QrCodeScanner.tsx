@@ -1,8 +1,7 @@
-import { CustomText } from '@components/atoms';
 import { useStyleSheet } from '@hooks/useStyleSheet';
 import { Colors } from '@styles/index';
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 import { BarcodeFormat, useScanBarcodes } from 'vision-camera-code-scanner';
@@ -12,7 +11,7 @@ type Props = {
 };
 
 const QrScanner = ({ onCodeFinded }: Props) => {
-  const [hasPermission, setHasPermission] = React.useState(false);
+  const [hasPermission, setHasPermission] = useState(false);
   const devices = useCameraDevices();
   const device = devices.back;
   const transalteY = useSharedValue(500);
@@ -73,13 +72,6 @@ const QrScanner = ({ onCodeFinded }: Props) => {
           }}>
           <Animated.View style={[{ borderWidth: StyleSheet.hairlineWidth, borderColor: 'white' }, AnimatedScaning]} />
         </View>
-        {!!barcodes?.length && (
-          <View style={styles.barCodeTextView}>
-            <CustomText style={styles.barcodeTextURL}>
-              Testo trovato!
-            </CustomText>
-          </View>
-        )}
       </View>
     )
   );
@@ -100,7 +92,7 @@ const useStyles = () => {
       justifyContent: 'center',
       flexDirection: 'row',
       padding: 15,
-      backgroundColor: 'red',
+      backgroundColor: Colors.PRIMARY,
       top: height / 2,
       borderWidth: StyleSheet.hairlineWidth,
       position: 'absolute',

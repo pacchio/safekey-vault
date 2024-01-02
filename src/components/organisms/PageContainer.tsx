@@ -3,7 +3,6 @@ import { RootState } from '@store/index';
 import { Colors, Spacing } from '@styles/index';
 import { WINDOW_HEIGHT } from '@styles/mixins';
 import { wait } from '@utils/commonFunctions';
-import { commonStyles } from '@utils/commonStyles';
 import { useTheme } from '@utils/themeProvider';
 import React, { useCallback } from 'react';
 import {
@@ -29,16 +28,19 @@ LogBox.ignoreLogs([
   'Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`',
 ]);
 
-const SafeAreaContainer = ({ children, barStyle }: { children: any; barStyle?: StatusBarStyle }) => (
-  <SafeAreaView
-    style={{
-      flex: 1,
-      backgroundColor: barStyle && barStyle === 'light-content' ? Colors.BLACK : Colors.WHITE,
-    }}>
-    <StatusBar barStyle={barStyle || (Platform.OS === 'ios' ? 'dark-content' : 'default')} />
-    {children}
-  </SafeAreaView>
-);
+const SafeAreaContainer = ({ children, barStyle }: { children: any; barStyle?: StatusBarStyle }) => {
+  const { colors, isDark } = useTheme();
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: colors.backgroundHeader,
+      }}>
+      <StatusBar barStyle={barStyle ?? (isDark ? 'light-content' : 'dark-content')} />
+      {children}
+    </SafeAreaView>
+  );
+};
 
 const PageContainer = ({
   children,
@@ -62,7 +64,7 @@ const PageContainer = ({
 }: Props) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const isLoading = useSelector((state: RootState) => state.common.isLoading);
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
 
   const mContainerStyle = {
     ...styles.container,
@@ -125,12 +127,9 @@ const PageContainer = ({
 
   const content = (
     <View style={[mContainerStyle, containerStyle]}>
-      <StatusBar
-        barStyle={Platform.OS === 'ios' ? barStyle || 'dark-content' : 'default'}
-        backgroundColor={Colors.PRIMARY}
-      />
+      <StatusBar barStyle={barStyle ?? (isDark ? 'light-content' : 'dark-content')} backgroundColor={Colors.PRIMARY} />
       {customHeader && (
-        <SafeAreaView style={styles.headerSafeArea}>
+        <SafeAreaView style={{ backgroundColor: colors.backgroundHeader }}>
           <View style={{ ...mHeaderStyle, ...customHeaderStyle }}>{customHeader}</View>
         </SafeAreaView>
       )}
@@ -154,10 +153,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-  },
-  headerSafeArea: {
-    ...commonStyles.headerStyle,
-    backgroundColor: Colors.WHITE,
   },
   header: {
     height: Platform.OS === 'ios' ? 44 : 56,

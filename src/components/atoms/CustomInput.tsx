@@ -46,7 +46,7 @@ const CustomInput = React.forwardRef(
     }: Props,
     ref: any,
   ) => {
-    const { colors } = useTheme();
+    const { colors, isDark } = useTheme();
     const inputContainerStyle = light
       ? { ...mStyle.container, backgroundColor: Colors.WHITE }
       : { ...mStyle.container, backgroundColor: colors.backgroundInput };
@@ -103,7 +103,7 @@ const CustomInput = React.forwardRef(
 
     const RightIcon = ({ icon, color, onPress }: { icon: string; color?: ColorType; onPress?: () => void }) => (
       <TouchableOpacity style={iconContainerRightStyle} onPress={onPress}>
-        <CustomIcon icon={icon} size={ICON_SIZE_SMALL} color={color ?? Colors.GRAY_DARK} />
+        <CustomIcon icon={icon} size={ICON_SIZE_SMALL} color={isDark ? colors.text : color ?? Colors.GRAY_DARK} />
       </TouchableOpacity>
     );
 

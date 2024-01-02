@@ -1,6 +1,6 @@
-import { CustomText, CustomRow, CustomIcon } from '@components/atoms';
+import { CustomIcon, CustomRow, CustomText } from '@components/atoms';
 import { CustomHelp } from '@components/molecules';
-import { Colors, Spacing } from '@styles/index';
+import { Spacing } from '@styles/index';
 import { ICON_SIZE_SMALL } from '@styles/spacing';
 import React from 'react';
 import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
@@ -8,7 +8,7 @@ import { StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
 const CustomLabelText = ({
   icon,
   iconFontawesome,
-  iconColor = Colors.BLACK_SMOKED,
+  iconColor,
   label,
   labelOnTop = false,
   labelColor,
@@ -38,7 +38,7 @@ const CustomLabelText = ({
           <CustomRow center={center} marginTop={marginTop}>
             <CustomRow style={{ flex: rightButtons ? 1 : 0 }}>
               <CustomText
-                color={labelColor || 'primary'}
+                color={labelColor}
                 bold={labelBold}
                 right={textAlignRight}
                 style={{

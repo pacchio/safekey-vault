@@ -2,6 +2,7 @@ import { CustomButton, CustomIcon, CustomText } from '@components/atoms';
 import { CustomBackButton } from '@components/molecules';
 import { Spacing } from '@styles/index';
 import { commonStyles } from '@utils/commonStyles';
+import { useTheme } from "@utils/themeProvider";
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -17,10 +18,11 @@ const CustomHeader = ({
   const optionButtonPressed = () => {
     navigation.toggleDrawer();
   };
+  const { isDark } = useTheme();
 
   return (
     <>
-      <View style={styles.headerLeft}>{backButton && <CustomBackButton />}</View>
+      <View style={styles.headerLeft}>{backButton && <CustomBackButton color={isDark ? 'white' : 'primary'} />}</View>
       <View style={styles.headerTitleContainer}>
         <CustomText numberOfLines={1} style={commonStyles.headerTitle}>
           {title}
@@ -32,7 +34,8 @@ const CustomHeader = ({
             padding={'xs'}
             iconSize={Spacing.ICON_SIZE_MEDIUM}
             light
-            color={'primary'}
+            trasparent
+            color={isDark ? 'white' : 'primary'}
             icon={confirmIcon ?? 'check'}
             onClick={confirm}
             disabled={confirmDisabled}

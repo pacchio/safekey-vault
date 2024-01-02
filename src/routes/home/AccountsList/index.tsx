@@ -16,6 +16,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { showAlert } from '@services/AlertService';
 import { Colors } from '@styles/index';
 import { commonStyles } from '@utils/commonStyles';
+import { useTheme } from "@utils/themeProvider";
 import * as _ from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { Keyboard, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -36,6 +37,7 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
   const { accounts, setAccounts } = useAccounts();
   const [accountsList, setAccountsList] = useState<Account[]>([]);
   const [term, setTerm] = useState('');
+  const { colors } = useTheme();
 
   useEffect(() => {
     setAccountsList(accounts);
@@ -55,11 +57,11 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
     Keyboard.dismiss();
   };
 
-  const searchUpdate = _.debounce((text: string) => {
-    if (text.length === 0 || text.length > 2) {
+  const searchUpdate = (text: string) => {
+    if (text.length === 0 || text.length > 1) {
       setAccountsList(accounts.filter((a) => a.title.toLowerCase().includes(text.toLowerCase())));
     }
-  }, 200);
+  };
 
   const onDragEnd = ({ data }: any) => {
     setAccounts(data);
@@ -108,7 +110,7 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
           <CustomIcon icon={'reorder'} color={'gray'} />
         </CustomView>
         <CustomView centerVertical marginLeft style={{ flex: 8 }}>
-          <CustomText color={'primary'}>{`${data.item.title}`}</CustomText>
+          <CustomText>{`${data.item.title}`}</CustomText>
         </CustomView>
       </CustomListItem>
     );
@@ -116,7 +118,9 @@ const AccountsListScreen = ({ navigation }: NativeStackScreenProps<any>) => {
 
   const renderHiddenItem = (data: { item: Account }, close: Promise<void>) => (
     <View style={commonStyles.rowBack}>
-      <TouchableOpacity style={[commonStyles.backRightBtn]} onPress={() => onDeleteAccount(close, data.item)}>
+      <TouchableOpacity
+        style={[commonStyles.backRightBtn, { backgroundColor: colors.primary }]}
+        onPress={() => onDeleteAccount(close, data.item)}>
         <CustomIcon icon={'delete'} color={Colors.WHITE} />
       </TouchableOpacity>
     </View>

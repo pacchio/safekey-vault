@@ -24,7 +24,7 @@ const CustomText = ({
 
   let textColor =
     color === 'primary'
-      ? Colors.PRIMARY
+      ? colors.primary
       : color === 'secondary'
       ? Colors.SECONDARY
       : color === 'accent'

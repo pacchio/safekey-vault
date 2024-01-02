@@ -1,6 +1,7 @@
 import { CustomRow, CustomIcon } from '@components/atoms';
 import { Colors, Spacing, Typography } from '@styles/index';
 import { ICON_SIZE_MEDIUM } from '@styles/spacing';
+import { useTheme } from "@utils/themeProvider";
 import React, { useState } from 'react';
 import { Image, ImageStyle, StyleSheet, Text, TextStyle, TouchableNativeFeedback, View, ViewStyle } from 'react-native';
 import { wait } from '@utils/commonFunctions';
@@ -24,10 +25,11 @@ const CustomButton = ({
   img,
 }: Props) => {
   const [canPropagate, setCanPropagate] = useState(true);
+  const { colors } = useTheme();
 
   let buttonColor =
     color === 'primary'
-      ? Colors.PRIMARY
+      ? colors.primary
       : color === 'secondary'
       ? Colors.SECONDARY
       : color === 'accent'
@@ -77,7 +79,7 @@ const CustomButton = ({
   let textStyle =
     light || trasparent
       ? { ...mStyles.baseTextStyle, color: buttonColor, fontFamily }
-      : { ...mStyles.baseTextStyle, fontFamily };
+      : { ...mStyles.baseTextStyle, color: colors.buttonText, fontFamily };
   textStyle = icon ? { ...textStyle, marginLeft: Spacing.SCALE_8 } : { ...textStyle };
   textStyle =
     padding === 'large'
@@ -167,7 +169,6 @@ const mStyles = StyleSheet.create({
     width: '100%',
   },
   baseTextStyle: {
-    color: Colors.WHITE,
     fontSize: Typography.FONT_SIZE_16,
     textAlign: 'center',
     fontFamily: Typography.FONT_FAMILY_APP,

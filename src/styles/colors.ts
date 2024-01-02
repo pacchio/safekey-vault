@@ -1,5 +1,6 @@
 export const PRIMARY = '#263032';
 export const PRIMARY_TRASPARENT = '#26303230';
+export const PRIMARY_DARK = '#1F2426';
 export const SECONDARY = '#5CE0E6';
 export const ACCENT = '#AD3ECD';
 
@@ -36,15 +37,17 @@ export const lightColors = {
   background: WHITE,
   primary: PRIMARY,
   text: BLACK_SMOKED,
+  buttonText: WHITE,
 };
 
 export const darkColors = {
   backgroundPage: BLACK_SMOKED_LIGHT,
-  backgroundHeader: BLACK_SMOKED,
-  backgroundInput: BLACK_SMOKED,
-  background: BLACK_SMOKED,
-  primary: PRIMARY,
-  text: WHITE,
+  backgroundHeader: BLACK_SMOKED_LIGHT,
+  backgroundInput: PRIMARY_DARK,
+  background: BLACK_SMOKED_LIGHT,
+  primary: PRIMARY_DARK,
+  text: GRAY_MEDIUM,
+  buttonText: WHITE,
 };
 
 export type ColorType = 'primary' | 'secondary' | 'accent' | 'white' | 'black' | 'gray' | string;

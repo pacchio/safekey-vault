@@ -1,4 +1,5 @@
-import { Spacing } from '@styles/index';
+import { Colors, Spacing } from '@styles/index';
+import { useTheme } from "@utils/themeProvider";
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScaleDecorator } from 'react-native-draggable-flatlist';
@@ -49,10 +50,11 @@ export const CustomSwipableRowItem = ({
 };
 
 function Overlay({ renderItem, drag, item }: { renderItem: any; drag: any; item: any }) {
+  const { isDark } = useTheme();
   const { openDirection, close, openRight, openLeft } = useSwipeableItemParams();
-  const { backgroundColor, hasLeft, hasRight } = item as any;
+  const { hasLeft, hasRight } = item as any;
   return (
-    <View style={[{ backgroundColor }]}>
+    <View style={[{ backgroundColor: isDark ? Colors.PRIMARY_DARK : Colors.GRAY_LIGHT }]}>
       <View style={{ flex: 1, alignItems: 'flex-start' }}>
         {hasRight && <TouchableOpacity onPressOut={(openDirection ? close : openRight) as any} />}
       </View>

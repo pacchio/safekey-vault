@@ -10,7 +10,6 @@ export const commonStyles = StyleSheet.create({
     elevation: 24,
   },
   headerTitle: {
-    color: Colors.PRIMARY,
     fontWeight: 'bold',
     fontFamily: FONT_FAMILY_OPENSANS,
     fontSize: FONT_SIZE_PAGE_HEADER,

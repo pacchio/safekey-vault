@@ -19,7 +19,7 @@ export const useAppSettings = () => {
       );
       setSettings(merge);
     } else {
-      setSettings([]);
+      setSettings(SETTINGS);
     }
   }, [settingsStored]);
 

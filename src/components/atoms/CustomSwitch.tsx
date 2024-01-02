@@ -1,15 +1,16 @@
 import { Colors } from '@styles/index';
-import React from 'react';
+import { useTheme } from '@utils/themeProvider';
 import { Switch } from 'react-native';
 
 const CustomSwitch = ({ style, onToggle, value }: Props) => {
+  const { isDark } = useTheme();
   return (
     <>
       <Switch
         style={[style]}
-        thumbColor={value ? Colors.PRIMARY : Colors.WHITE_SMOKED}
+        thumbColor={value ? (isDark ? Colors.PRIMARY_DARK : Colors.PRIMARY) : Colors.WHITE_SMOKED}
         trackColor={{
-          true: Colors.PRIMARY_TRASPARENT,
+          true: isDark ? Colors.GRAY_DARK : Colors.PRIMARY_TRASPARENT,
           false: Colors.GRAY_MEDIUM,
         }}
         value={value}

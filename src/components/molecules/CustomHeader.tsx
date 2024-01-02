@@ -2,8 +2,7 @@ import { CustomButton, CustomIcon, CustomText } from '@components/atoms';
 import { CustomBackButton } from '@components/molecules';
 import { Spacing } from '@styles/index';
 import { commonStyles } from '@utils/commonStyles';
-import { useTheme } from "@utils/themeProvider";
-import React from 'react';
+import { useTheme } from '@utils/themeProvider';
 import { StyleSheet, View } from 'react-native';
 
 const CustomHeader = ({

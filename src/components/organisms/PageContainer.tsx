@@ -4,7 +4,7 @@ import { Colors, Spacing } from '@styles/index';
 import { WINDOW_HEIGHT } from '@styles/mixins';
 import { wait } from '@utils/commonFunctions';
 import { useTheme } from '@utils/themeProvider';
-import React, { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import {
   ImageBackground,
   ImageStyle,
@@ -36,7 +36,9 @@ const SafeAreaContainer = ({ children, barStyle }: { children: any; barStyle?: S
         flex: 1,
         backgroundColor: colors.backgroundHeader,
       }}>
-      <StatusBar barStyle={barStyle ?? (isDark ? 'light-content' : 'dark-content')} />
+      <StatusBar
+        barStyle={barStyle ?? (Platform.OS === 'ios' ? (isDark ? 'light-content' : 'dark-content') : 'default')}
+      />
       {children}
     </SafeAreaView>
   );
@@ -62,7 +64,7 @@ const PageContainer = ({
   barStyle,
   useKeyboardAvoidingView = true,
 }: Props) => {
-  const [refreshing, setRefreshing] = React.useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const isLoading = useSelector((state: RootState) => state.common.isLoading);
   const { colors, isDark } = useTheme();
 
@@ -127,7 +129,10 @@ const PageContainer = ({
 
   const content = (
     <View style={[mContainerStyle, containerStyle]}>
-      <StatusBar barStyle={barStyle ?? (isDark ? 'light-content' : 'dark-content')} backgroundColor={Colors.PRIMARY} />
+      <StatusBar
+        barStyle={barStyle ?? (Platform.OS === 'ios' ? (isDark ? 'light-content' : 'dark-content') : 'default')}
+        backgroundColor={colors.primary}
+      />
       {customHeader && (
         <SafeAreaView style={{ backgroundColor: colors.backgroundHeader }}>
           <View style={{ ...mHeaderStyle, ...customHeaderStyle }}>{customHeader}</View>

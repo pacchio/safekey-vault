@@ -8,7 +8,6 @@ import { Spacing } from '@styles/index';
 import { FONT_SIZE_SMALL } from '@styles/typography';
 import { commonStyles } from '@utils/commonStyles';
 import * as _ from 'lodash';
-import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { AppSetting } from 'types/app-setting';
 

@@ -79,11 +79,11 @@ const LoginScreen = ({}: NativeStackScreenProps<any>) => {
         </CustomRow>
       )}
       {/* ========== DEBUG =========== */}
-      <CustomViewBottom>
-        <CustomRow>
-          <CustomButton full color={'primary'} title={'Svuota storage'} onClick={clearAllData} />
-        </CustomRow>
-      </CustomViewBottom>
+      {/*<CustomViewBottom>*/}
+      {/*  <CustomRow>*/}
+      {/*    <CustomButton full color={'primary'} title={'Svuota storage'} onClick={clearAllData} />*/}
+      {/*  </CustomRow>*/}
+      {/*</CustomViewBottom>*/}
     </PageContainer>
   );
 };

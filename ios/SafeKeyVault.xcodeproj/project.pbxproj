@@ -508,7 +508,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nextappstudio.safekeyvault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVaultTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -537,7 +537,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nextappstudio.safekeyvault;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVaultTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -555,6 +555,8 @@
 				DEVELOPMENT_TEAM = Z7RVCAZPRC;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SafeKeyVault/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "SafeKey Vault";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -565,7 +567,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nextappstudio.safekeyvault;
 				PRODUCT_NAME = SafeKeyVault;
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVault-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -583,6 +585,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z7RVCAZPRC;
 				INFOPLIST_FILE = SafeKeyVault/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "SafeKey Vault";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -593,7 +597,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SafeKeyVault;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nextappstudio.safekeyvault;
 				PRODUCT_NAME = SafeKeyVault;
 				SWIFT_OBJC_BRIDGING_HEADER = "SafeKeyVault-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

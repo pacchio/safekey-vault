@@ -1,15 +1,27 @@
 # SafeKey Vault
 
-SafeKey Vault is a mobile app to provide a **secure** and **user-friendly** platform for managing passwords and sensitive account information.
+SafeKey Vault is a mobile app to provide a **secure** and **user-friendly** way for managing passwords and sensitive accounts information.
 <br />The app aims to ensure utmost security by implementing **biometric authentication** for access while allowing users to create, update, and remove items containing login credentials and other notes for various accounts.
 All in **offline** mode, without any in-cloud backup, to keep the data as safe as possible leveraging on **device storage**.
 Additionally, it facilitates secure export/import functionalities for user convenience.
 
 > **Note**: Currently the only supported language is IT 🇮🇹
 
-### Data encryption
+## Features
+
+### Biometric Check at App Start
+Integration of biometric authentication as the initial step upon app launch for robust security measures.
+
+### Password Management
+Create, Update, and Remove Items: Allow users to add new account items, edit existing ones, or delete items as needed, incorporating features to store email addresses, usernames, passwords, and additional notes securely.
+
+#### Data encryption
 Data are saved on device storage in a secure way via [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) library.
 <br />MMKV is an open-source, high-performance and user-friendly mobile key-value storage framework designed for WeChat. It’s built on top of the key-value storage engine LevelDB and provides a simple API for storing and retrieving data. It also offers encryption support, leveraging on secure storage.
+
+
+### Secure Export/Import
+Biometrically Secured Export/Import: Implement secure export/import functionality ensuring encryption of data and requesting biometric authentication when performing these actions, thereby enhancing overall security. Implement QR code like Google Authenticator.
 
 ## Getting Started
 

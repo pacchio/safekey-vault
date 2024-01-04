@@ -1,0 +1,106 @@
+workflows:
+  android-publish-prod:
+    name: Android publish [prod]
+    max_build_duration: 30
+    instance_type: mac_mini_m1
+    cache:
+      cache_paths:
+        - $HOME/.gradle/caches
+        - $FCI_BUILD_DIR/node_modules
+    environment:
+      node: 18.17.0
+      android_signing:
+        - safekeyvault_keystore
+      groups:
+        - google_credentials
+        - keystore_credentials
+    scripts:
+      - name: Install npm dependencies
+        script: |
+          npm install --legacy-peer-deps
+      - name: Set Android SDK location
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+#      - name: Change below to your Android SDK path
+#        script: |
+#          cd ~/Library/Android/sdk/build-tools/33.0.0 \
+#          && mv d8 dx \
+#          && cd lib  \
+#          && mv d8.jar dx.jar
+      - name: Build bundle Release
+        script: |
+          cd android
+          chmod +x gradlew
+          ./gradlew bundleRelease
+      - name: Generate apk from aab
+        script: |
+          android-app-bundle build-universal-apk \
+            --bundle 'android/app/build/outputs/**/*.aab' \
+            --ks $CM_KEYSTORE_PATH \
+            --ks-pass $CM_KEYSTORE_PASSWORD \
+            --ks-key-alias $CM_KEY_ALIAS \
+            --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - android/app/build/outputs/**/*.aab
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: production
+        in_app_update_priority: 0
+        submit_as_draft: true
+  ios-publish-prod:
+    name: iOS publish [prod]
+    max_build_duration: 30
+    instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: safekeyvault_api_key_pro
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.nextappstudio.safekeyvault
+      vars:
+        XCODE_WORKSPACE: "SafeKeyVault.xcworkspace"
+        XCODE_SCHEME: "SafeKeyVault"
+        BUNDLE_ID: "com.nextappstudio.safekeyvault"
+        APP_STORE_APP_ID: 6475373999
+      node: 18.17.0
+      xcode: 15.0.1
+      cocoapods: default
+    cache:
+      cache_paths:
+        - $HOME/Library/Caches/CocoaPods
+        - $FCI_BUILD_DIR/node_modules
+    scripts:
+      - name: Install npm dependencies
+        script: |
+          npm install --legacy-peer-deps
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios && pod update && pod install --repo-update
+      - name: Increment build number
+        script: |
+          #!/bin/sh
+          cd $CM_BUILD_DIR/ios
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APP_ID")
+          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles --project ios/*.xcodeproj
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/ios/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME" \
+            --archive-flags="-destination 'generic/platform=iOS'"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        beta_groups:
+          - Intern

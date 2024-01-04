@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your Camera.</string>
+	<string>$(PRODUCT_NAME) needs access to your Camera to scan the QR code and import accounts.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Authentication with TouchId or FaceID</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

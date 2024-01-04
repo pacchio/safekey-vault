@@ -1,5 +1,19 @@
 # SafeKey Vault
 
+<div style="text-align:center">
+  <img src="src/assets/images/logo/SafeKeyVault-v2-trasparent.png" width="200"/>
+</div>
+
+<div style="text-align:center">
+    <a href="https://apps.apple.com/it/app/safekey-vault/id6475373999">
+        <img height="50" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Download_on_the_App_Store_Badge_IT_RGB_blk.svg" alt="Download on the App Store" />
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.nextappstudio.safekeyvault">
+        <img height="50" src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Google_Play_Store_badge_IT.svg" alt="Get it on Google Play"/>
+    </a>
+</div>
+<br />
+
 SafeKey Vault is a mobile app to provide a **secure** and **user-friendly** way for managing passwords and sensitive accounts information.
 <br />The app aims to ensure utmost security by implementing **biometric authentication** for access while allowing users to create, update, and remove items containing login credentials and other notes for various accounts.
 All in **offline** mode, without any in-cloud backup, to keep the data as safe as possible leveraging on **device storage**.

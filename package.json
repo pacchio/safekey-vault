@@ -13,7 +13,11 @@
     "pod:install:clean": "sh ./scripts/pod-install.sh --clean",
     "start": "react-native start",
     "start:reset-cache": "react-native start --reset-cache",
-    "test": "jest"
+    "test": "jest",
+    "macos:merge-upgrading-version": "sh scripts/merge-upgrading-version.sh ./scripts/upgrade-version-macos.sh",
+    "windows:merge-upgrading-version": "sh scripts/merge-upgrading-version.sh ./scripts/upgrade-version-windows.sh",
+    "macos:upgrade-version": "sh ./scripts/upgrade-version-macos.sh",
+    "windows:upgrade-version": "sh ./scripts/upgrade-version-windows.sh"
   },
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.12.1",

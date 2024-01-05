@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "run:android": "react-native run-android",
-    "run:ios:simulator": "react-native run-ios --mode Debug --simulator=\"iPhone 15 Pro\"",
+    "run:ios:simulator": "react-native run-ios --mode Debug",
     "run:ios:device": "react-native run-ios --mode Debug --device \"iPhone di Andrea\"",
     "run:ios:release": "react-native run-ios --mode Release --device \"iPhone di Andrea\"",
     "lint": "eslint .",

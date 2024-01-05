@@ -13,7 +13,7 @@ export const SETTINGS: AppSetting[] = [
     title: 'Face ID Auto',
     description: 'Richiedi il Face ID in automatico al login',
     type: 'boolean',
-    defaultValue: true,
+    defaultValue: false,
   },
   {
     key: SETTINGS_KEYS.DARK_MODE,

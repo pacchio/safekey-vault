@@ -55,7 +55,9 @@ const QrCodeScreen = ({
           </CustomText>
         </CustomView>
         {!!accountsToExport && (
-          <QRCode value={accountsToExport} ecl={'L'} size={width - Spacing.MARGIN_FROM_BOARD * 2} />
+          <CustomView paddingVertical paddingHorizontal backgroundColor={'white'}>
+            <QRCode value={accountsToExport} ecl={'L'} size={width - Spacing.MARGIN_FROM_BOARD * 2} />
+          </CustomView>
         )}
       </CustomView>
     </PageContainer>

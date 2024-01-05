@@ -1,6 +1,6 @@
 {
   "name": "safekey-vault",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "run:android": "react-native run-android",

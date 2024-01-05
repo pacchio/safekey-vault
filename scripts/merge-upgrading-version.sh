@@ -9,12 +9,12 @@ echo "---------- TAG VERSIONE ----------"
 
 # merge
 git pull --rebase
-git checkout master
+git checkout main
 git pull --rebase
 git merge dev
 echo -e "MERGE EFFETTUATO con branch \"dev\""
-git push origin master
-echo -e "PUSHATO MERGE su \"master\"\n"
+git push origin main
+echo -e "PUSHATO MERGE su \"main\"\n"
 
 # tag
 old_version=$(npm pkg get version | tr -d '"')

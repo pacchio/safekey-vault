@@ -33,11 +33,24 @@ Create, Update, and Remove Items: Allow users to add new account items, edit exi
 Data are saved on device storage in a secure way via [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) library.
 <br />MMKV is an open-source, high-performance and user-friendly mobile key-value storage framework designed for WeChat. It’s built on top of the key-value storage engine LevelDB and provides a simple API for storing and retrieving data. It also offers encryption support, leveraging on secure storage.
 
-
 ### Secure Export/Import
 Biometrically Secured Export/Import: Implement secure export/import functionality ensuring encryption of data and requesting biometric authentication when performing these actions, thereby enhancing overall security. Implement QR code like Google Authenticator.
 
-## Getting Started
+### Now what?
+
+- Multi-language integration will come soon
+
+## Developement
+
+### Setup
+
+Install dependencies and pods (for iOS only).
+
+```bash
+yarn install
+# For iOS only
+yarn pod:install
+```
 
 ### Step 1: Start the Metro Server
 
@@ -46,10 +59,6 @@ First, you will need to start **Metro**, the JavaScript _bundler_ that ships _wi
 To start Metro, run the following command from the _root_ of your React Native project:
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
 yarn start
 ```
 
@@ -74,6 +83,24 @@ yarn run:ios:device
 yarn run:ios:release
 ```
 
-### Now what?
+### Scripts
+Some scripts are available to simplify some tasks.
 
-- Multi-language integration will come soon
+#### Merge upgrading version
+- Tag the current version
+- Merge on main branch and push
+- Upgrade snapshot version
+- Push on dev branch
+
+```bash
+# on MacOS
+yarn macos:merge-upgrading-version
+# on Windows
+yarn windows:merge-upgrading-version
+```
+
+### Release builds
+The releases are created through CodeMagic CI/CD platform:
+- from main branch
+- for both Android and iOS release
+- pipeline defined into codemagic.yaml file

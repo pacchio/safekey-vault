@@ -31,12 +31,21 @@ const AccountDetailScreen = ({
     setAccount(accounts.find((a) => a.id === id));
   }, [accounts]);
 
+  const getIndex = (newAccount: Account) => {
+    const index = accounts.findIndex((a) => a.id === newAccount.id);
+    if (index > -1) {
+      return index;
+    }
+    // case to handle account without id
+    return accounts.findIndex((a) => a.title === newAccount.title);
+  };
+
   const update = () => {
     const newAccount = formComponent.current?.getAccountFromForm();
     if (!newAccount) {
       return;
     }
-    const index = accounts.findIndex((a) => a.id === newAccount.id);
+    const index = getIndex(newAccount);
     if (index === -1) {
       return;
     }

@@ -1,11 +1,13 @@
-import { CustomInput, CustomLabelText } from '@components/atoms';
+import { CustomInput, CustomLabelText, CustomViewBottom } from '@components/atoms';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { AppMessageType, showToastMessage } from '@services/ToastService';
+import { Colors } from '@styles/index';
 import React, { useEffect, useState } from 'react';
 import { Account } from 'types/account';
 import { v4 } from 'uuid';
 
 const AccountForm = React.forwardRef(({ account }: Props, ref) => {
+  const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,6 +17,7 @@ const AccountForm = React.forwardRef(({ account }: Props, ref) => {
 
   useEffect(() => {
     if (account) {
+      setId(account.id);
       setTitle(account.title);
       setUsername(account.username);
       setEmail(account.email);
@@ -128,6 +131,9 @@ const AccountForm = React.forwardRef(({ account }: Props, ref) => {
           <CustomInput numberOfLines={5} value={notes} onChangeText={(txt) => setNotes(txt)} placeholder={'Note'} />
         }
       />
+      <CustomViewBottom>
+        <CustomLabelText marginTop label={'Id'} text={id ?? '-'} textColor={Colors.GRAY_DARK} />
+      </CustomViewBottom>
     </>
   );
 });
